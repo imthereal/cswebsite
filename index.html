@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Let's Decide!</title>
+    <link rel="stylesheet" href="terminal.css">
+    <style>
+      body {
+        background: #272822;
+        color: white;
+        
+        width:  100%;
+        height: 100%;
+        
+        padding: 20px;
+        margin:  0;
+        
+        box-sizing: border-box;        
+      }
+    </style>
+  </head>
+  <body><center>
+    <h1>Let's Decide!</h1>
+    <h2>Need to make a decision? I'll help you :)</h2>
+    <div id="terminal">
+      <p>Type 'help' to get started.</p>
+      <p class="hidden">
+          <span class="prompt"><font color="#FD971F;">Enter Here: </font></span>
+        <span contenteditable="true" class="input"> </span>
+      </p>
+    </div>
+    <script src="terminal.js"></script>
+    <script>
+    
+    
+      var commands = {};
+      commands.help = function() {
+        var output = "<div>" +
+                     "<strong>help</strong> - display this help.<br/>" +
+                     "<strong>hello NAME</strong> - displays a greeting for NAME.<br/>" +
+                    "<strong>decide</strong> - helps you decide things<br/>" + "</div>";
+        return output;
+      };
+        
+      commands.hello = function(args) {
+        if(args.length < 2) return "<p>Hello. Why don't you tell me your name?</p>";
+        return "Hello " + args[1];
+      };
+       commands.cat = function(dog) {
+        return "<image src=\"/Resources/catdog.jpg\">";
+      };
+      var choice, choices = [];
+      commands.decide = function(){
+        console.log('Let\'s Decide!')
+        while (choice !== 'stop' && choice !== 'Stop'){
+            choice = prompt('Enter choice. If you want to remove your last choice, enter \"remove\". If you are done, enter \"stop\". \n');
+            if ((choice !== 'stop') && (choice !== '') && (choice !== 'remove')){
+                choices.push(choice);
+            }
+            else if (choice == ''){
+                window.alert('Whoops, you entered a blank. Enter a valid choice.');
+            }
+            else if (choice == 'remove' || choice == 'Remove'){
+                choices.pop();
+                window.alert('Poof! It\'s gone.');
+            }
+            else {
+                break;          
+            }
+        }
+          return "The random generator has spoken. It decided on: " + choices[Math.floor(Math.random() * choices.length)]; 
+      };
+        
+      Terminal.init(document.getElementById("terminal"), commands);
+    </script>
+      </center>
+  </body>
+</html>
