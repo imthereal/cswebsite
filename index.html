@@ -42,11 +42,15 @@
       };
         
       commands.hello = function(args) {
-        if(args.length < 2) return "<p>Hello. Why don't you tell me your name?</p>";
-        return "Hello " + args[1];
+        if(args.length < 2) {return "<p>Hello. Why don't you tell me your name?</p>";}
+        else if(args == "darkness my old friend"){ return "<p>I\'ve come to talk with you again</p>";}
+        else {return "Hello " + args[1];}
       };
        commands.cat = function(dog) {
-        return "<image src=\"/Resources/catdog.jpg\">";
+        return "<image src=\"./Resources/catdog.png\">";
+      };
+        commands.yucky = function() {
+        return "<image src=\"./Resources/armadillo.png\">";
       };
       var choice, choices = [];
       commands.decide = function(){
